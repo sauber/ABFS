@@ -1,52 +1,29 @@
 package ABFS;
+use Moose;
 
 use warnings;
 use strict;
 
 =head1 NAME
 
-ABFS - The great new ABFS!
+ABFS - A Big File System
 
 =head1 VERSION
 
-Version 0.01
+$Revision: 9 $
 
 =cut
 
-our $VERSION = '0.01';
-
+our $VERSION = do { my @r = ( q$Revision: 9 $ =~ /\d+/g ); sprintf "%d." . "%02d" x $#r, @r };
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
-
-Perhaps a little code snippet.
-
     use ABFS;
 
-    my $foo = ABFS->new();
+    my $abfs = ABFS->new();
     ...
 
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
 =head1 FUNCTIONS
-
-=head2 function1
-
-=cut
-
-sub function1 {
-}
-
-=head2 function2
-
-=cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 
@@ -99,12 +76,12 @@ L<http://search.cpan.org/dist/ABFS/>
 Copyright 2009 Soren Dossing.
 
 This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+under the terms the Artistic License.
 
 See http://dev.perl.org/licenses/ for more information.
 
 
 =cut
 
+no Moose;
 1; # End of ABFS
