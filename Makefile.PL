@@ -17,6 +17,7 @@ WriteMakefile(
         'Test::Pod::Coverage' => 0,
         'POE'                 => 0,
         'Moose'               => 0,
+        'Module::Load''       => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'ABFS-*' },

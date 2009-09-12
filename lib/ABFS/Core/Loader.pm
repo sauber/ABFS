@@ -1,11 +1,12 @@
-package ABFS;
-use MooseX::Singleton;
+package ABFS::Core::Loader;
+use Moose;
 
-with 'ABFS::Role::Loader', 'ABFS::Role::Command';
+use warnings;
+use strict;
 
 =head1 NAME
 
-ABFS - A Big File System
+ABFS::Core::Loader - Load modules on demand
 
 =head1 VERSION
 
@@ -15,59 +16,7 @@ $Revision: 9 $
 
 our $VERSION = do { my @r = ( q$Revision: 9 $ =~ /\d+/g ); sprintf "%d." . "%02d" x $#r, @r };
 
-=head1 SYNOPSIS
-
-    use ABFS;
-
-    my $abfs = ABFS->start();
-    ...
-
 =head1 FUNCTIONS
-
-=head2 commandlist
-
-  $abfs->commandlist();
-  
-Returns empty list, since this module does not have any commands. It just wants to run some.
-
-=cut
-
-sub commandlist { () }
-
-=head2 start
-
-  $abfs = ABFS->start(
-    config => $config,
-    commands => [ <startup_commands> ],
-  );
-
-Create a new ABFS object and start daemon and cli.
-
-=cut
-
-sub start {
-  my ($self) = shift;
-}
-
-=head2 run_commands
-
-Load core modules, and execute a list of commands.
-
-  $abfs->run_commands("command1", "command2", ...);
-
-=cut
-
-sub run_commands {
-  my($self,@commands) = @_;
-
-  return unless @commands;
-  my @results;
-  for my $cmd ( @commands ) {
-    push @results, $self->commandline( $cmd );
-  }
-  return @results;
-}
-
 
 =head1 AUTHOR
 
@@ -86,7 +35,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc ABFS
+    perldoc ABFS::Core::Loader
 
 
 You can also look for information at:
@@ -95,7 +44,7 @@ You can also look for information at:
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=ABFS>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=ABFS::Core::Loader>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
@@ -129,4 +78,4 @@ See http://dev.perl.org/licenses/ for more information.
 
 no Moose;
 __PACKAGE__->meta->make_immutable;
-1; # End of ABFS
+1; # End of ABFS::Core::Loader
