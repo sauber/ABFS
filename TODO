@@ -1,0 +1,27 @@
+* File Plugin
+* File Test
+* Storage Plugin
+* Storage test
+
+Reading a file:
+
+* A file is requested
+* The name is mapped to MD5 block id
+* Block is loaded
+* Decoder is determined, and loaded
+* A number of bytes are accessed
+* Blocks are requested by decoder
+* Blocks are decoded and bytes extracted and returned
+
+Writing a file:
+
+* A file is opened
+* Encoder is decided and loaded
+* Bytes are written. Blocks are generated.
+* Blocks close and flush.
+* Blocklist kept by encoder
+* File is closed.
+* MD5 ID generated, and added to dir.
+
+Blockid's are entirely based on content. Fileid is entirely based on 
+content of inode.
