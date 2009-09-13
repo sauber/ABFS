@@ -1,8 +1,5 @@
 #!perl -T
 
-# Run only this test:
-# prove -I../lib abfs.t
-
 use Test::More qw( no_plan );
 
 BEGIN { use_ok('ABFS'); }

@@ -1,7 +1,8 @@
-Revision history for ABFS
+Revision history for Filesys-Virtual-ABFS
 
-0.01    2009-09-09
-        New ABFS namespace
+0.01	2009-09-13
+	Change namespace to ABFS
 
 0.00    2007-02-13
         Development started
+

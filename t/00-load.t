@@ -3,7 +3,7 @@
 use Test::More tests => 1;
 
 BEGIN {
-    use_ok( 'ABFS' );
+  use_ok('ABFS');
 }
 
-diag( "Testing ABFS $ABFS::VERSION, Perl $], $^X" );
+#diag( "Testing ABFS $ABFS::VERSION, Perl $], $^X" );
