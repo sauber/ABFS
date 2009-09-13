@@ -1,0 +1,21 @@
+#!/usr/bin/env perl
+
+# ABFS commands
+# $Revision$
+
+use strict;
+use warnings;
+use lib '../lib';
+use ABFS;
+
+# Run a list of commands given on command line. Examples:
+# abfsc help
+# abfsc lsmod
+# abfsc "load Filter::Timelimit; load Command::Filter; lsfilter"
+
+my $abfs = new ABFS();
+if ( @ARGV ) {
+  $abfs->run_commands( split /\s*;\s*/, $ARGV[0] );
+} else {
+  $abfs->run_commands( "load Core::Console", "load Command::Help" );
+}

@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+
+use Filesys::Virtual::Plain;
+use Net::DAV::Server;
+use HTTP::Daemon;
+
+my $filesys = Filesys::Virtual::Plain->new({root_path => $cwd});
+my $webdav = Net::DAV::Server->new();
+$webdav->filesys($filesys);
+
+my $d = HTTP::Daemon->new(
+  LocalAddr => 'localhost',
+  LocalPort => 4242,
+  ReuseAddr => 1) || die;
+print "Please contact me at: ", $d->url, "\n";
+while (my $c = $d->accept) {
+  while (my $request = $c->get_request) {
+    my $response = $webdav->run($request);
+    $c->send_response ($response);
+  }
+  $c->close;
+  undef($c);
+}
