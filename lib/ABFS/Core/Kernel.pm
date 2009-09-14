@@ -81,7 +81,7 @@ sub run {
   #warn "Stopping kernel\n";
 
   #exit 0;
-  #return;
+  return 1;
 }
 
 =head2 _start

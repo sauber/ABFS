@@ -20,12 +20,14 @@ for my $modulename ( all_modules() ) {
     #diag "Testing Loadable $abfsname";
     my $prop;
     ok( $prop = Load $obj->_properties(), "YAML Load $abfsname" );
-    ok( defined $obj->{config}, "$abfsname has config" );
+    ok( defined $obj->{config}, "$abfsname has no config" );
 
     # Try to load/unload module
     my $loader = new ABFS::Core::Loader;
     my @loaded = $loader->add($abfsname);
     ok( scalar @loaded > 0, "$abfsname added by loader" );
+  } else {
+    #diag "Skipping $modulename";
   }
 }
 # Close sessions

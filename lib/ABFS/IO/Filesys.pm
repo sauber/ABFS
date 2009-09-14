@@ -25,6 +25,7 @@ sub _properties {
   <<EOF;
 Depend:
  - IO::Dir
+
 EOF
 }
 
@@ -48,12 +49,12 @@ when ready.
 
 =cut
 
-sub new {
-  my $class = shift;
-  my $self  = {};
-  bless( $self, $class );
-  return $self;
-}
+#sub new {
+#  my $class = shift;
+#  my $self  = {};
+#  bless( $self, $class );
+#  return $self;
+#}
 
 =head2 open
 

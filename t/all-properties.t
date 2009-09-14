@@ -4,7 +4,7 @@ use Test::More qw( no_plan );
 use YAML::Syck qw(Load);
 
 # Get list of all modules
-opendir DH, "lib/Filesys/Virtual/ABFS";
+opendir DH, "lib/ABFS";
   my @modulelist = grep s/\.pm$//, readdir DH;
 close DH;
 

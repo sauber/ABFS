@@ -3,7 +3,7 @@ package ABFS::IO::Dir;
 use warnings;
 use strict;
 #use Carp;
-#use base ('ABFS::Common::Loadable');
+use base ('ABFS::Common::Loadable');
 
 
 =head1 NAME
@@ -132,12 +132,12 @@ already been flushed, so really getting rid of a dir is rarely possible.
 
 =cut
 
-sub new {
-  my $class = shift;
-  my $self  = {};
-  bless( $self, $class );
-  return $self;
-}
+#sub new {
+#  my $class = shift;
+#  my $self  = {};
+#  bless( $self, $class );
+#  return $self;
+#}
 
 =head1 AUTHOR
 
