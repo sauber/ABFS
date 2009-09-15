@@ -14,7 +14,7 @@ WriteMakefile(
     'POE'                 => 0,
     'Module::Load'        => 0,
     'List::Util'          => 0,
-    'Digest::SHA256'      => 0,
+    'Digest::SHA'         => 0,
     'Crypt::Rijndael'     => 0,
     'Crypt::CBC'          => 0,
     'Term::ReadKey'       => 0,

@@ -3,7 +3,7 @@ package ABFS::Core::Block;
 use warnings;
 use strict;
 use Carp;
-use Digest::SHA256;
+use Digest::SHA qw(sha256_hex);
 use Crypt::CBC;
 use Crypt::Rijndael;
 
@@ -114,8 +114,9 @@ sub genkey {
   my ($self) = @_;
 
   # XXX: Find a way to not make new sha object for every block to be stored.
-  $self->{sha256} ||= Digest::SHA256::new(256);
-  my $hash = $self->{sha256}->hexhash( ${ $self->{dataref} } );
+  #$self->{sha256} ||= Digest::SHA->new(256);
+  #my $hash = $self->{sha256}->hexdigest( ${ $self->{dataref} } );
+  my $hash = sha256_hex( ${ $self->{dataref} } );
   $hash =~ s/ //g;
   $self->{key} = $hash;
   return $hash;
