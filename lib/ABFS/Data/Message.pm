@@ -1,4 +1,4 @@
-package ABFS::Core::Message;
+package ABFS::Data::Message;
 
 use Moose;
 use MooseX::Method::Signatures;
