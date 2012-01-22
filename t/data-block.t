@@ -2,13 +2,13 @@
 
 use Test::More qw( no_plan );
 
-BEGIN { use_ok('ABFS::Core::Block'); }
-require_ok('ABFS::Core::Block');
+BEGIN { use_ok('ABFS::Data::Block'); }
+require_ok('ABFS::Data::Block');
 
 my $data = "Hello World";
 
-my $block = new ABFS::Core::Block content=>$data;
-isa_ok( $block, 'ABFS::Core::Block' );
+my $block = new ABFS::Data::Block content=>$data;
+isa_ok( $block, 'ABFS::Data::Block' );
 
 can_ok( $block, qw(content checksum name) );
 

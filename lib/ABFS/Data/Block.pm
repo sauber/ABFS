@@ -1,4 +1,4 @@
-package ABFS::Core::Block;
+package ABFS::Data::Block;
 
 use Moose;
 use MooseX::Method::Signatures;
