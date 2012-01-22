@@ -9,9 +9,9 @@ my $message = new ABFS::Core::Message;
 isa_ok( $message, 'ABFS::Core::Message' );
 
 # Test that default message is request
-ok( $message->{messagetype} eq 'request', 'defaultrequest' );
+ok( $message->exchange eq 'request', 'defaultrequest' );
 
 # Test that responses are correct type
 my $res =
-  ABFS::Core::Message->new( messagetype => 'response' );
-ok( $res->{messagetype} eq 'response', 'response' );
+  ABFS::Core::Message->new(exchange => 'response' );
+ok( $res->exchange eq 'response', 'response' );

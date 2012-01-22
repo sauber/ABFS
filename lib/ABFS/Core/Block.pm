@@ -1,5 +1,27 @@
 package ABFS::Core::Block;
 
+use Moose;
+use MooseX::Method::Signatures;
+use Digest::SHA qw(sha256_hex);
+
+# Block content
+#
+has content => ( is => 'ro', isa => 'Str' );
+
+# Checksum of content
+#
+method checksum { sha256_hex $self->content }
+
+# Name of block is same as checksum
+#
+method name { $self->checksum }
+
+__PACKAGE__->meta->make_immutable;
+ 
+1;
+
+package ABFS::Core::Block_delme;
+
 use warnings;
 use strict;
 use Carp;

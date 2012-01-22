@@ -1,5 +1,22 @@
 package ABFS::Core::Message;
 
+use Moose;
+use MooseX::Method::Signatures;
+use Moose::Util::TypeConstraints;
+
+# request or response
+has 'exchange' => ( is=>'ro', isa => enum([qw[ request response ]]), default => 'request' );
+
+has content => ( is=>'ro', isa => 'Str' );
+has header => ( is=>'ro', isa => 'HashRef', default => sub {{}} );
+
+__PACKAGE__->meta->make_immutable;
+ 
+1;
+
+
+package ABFS::Core::Message_delme;
+
 use warnings;
 use strict;
 
