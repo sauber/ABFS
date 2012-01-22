@@ -21,7 +21,12 @@ method get ( ABFS::Data::Message $msg ) {
 
   for my $store ( @$shelf ) {
     if ( my $block = $store->get($key) ) {
-      my $resp = new ABFS::Data::Message exchange=>'response', header=>{blockid=>$key}, content=>$block->content;
+      # Respond that we have found the block requested
+      my $resp = new ABFS::Data::Message
+        exchange=>'response',
+        service=>'block',
+        header=>{blockid=>$key},
+        content=>$block->content;
       return $resp;
     }
   }

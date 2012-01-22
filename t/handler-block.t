@@ -17,11 +17,13 @@ my $block = new ABFS::Data::Block content=>$content;
 my $key = $block->name;
 
 my $post = new ABFS::Data::Message
+  service => 'block',
   exchange => 'response',
   header => { blockid=>$key },
   content => $content;
 
 my $get = new ABFS::Data::Message
+  service => 'block',
   exchange => 'request',
   header => { blockid=>$key };
 
