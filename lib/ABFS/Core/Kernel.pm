@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 #sub POE::Kernel::TRACE_EVENTS () { 1 };
-use POE;
+#use POE;
 use base ('ABFS::Common::Loadable');
 #use ABFS::Core::Loader;
 
@@ -28,7 +28,7 @@ our $VERSION = do { my @r = ( q$Revision: 9 $ =~ /\d+/g ); sprintf "%d." . "%02d
 
 =head1 DESCRIPTION
 
-A POE based kernel to manage events, and launch and remove wheels.
+A kernel to manage events, and launch and remove wheels.
 
 =head1 FUNCTIONS
 
@@ -70,14 +70,14 @@ Run a kernel. All operation from here requires events.
 sub run {
   my $self = shift;
 
-  POE::Session->create(
-    inline_states => { _default => \&default, },
-    object_states => [ $self => [ '_start', '_stop' ], ]
-  );
+  #POE::Session->create(
+  #  inline_states => { _default => \&default, },
+  #  object_states => [ $self => [ '_start', '_stop' ], ]
+  #);
 
   #$poe_kernel->run();
   #warn "Starting kernel\n";
-  POE::Kernel->run();
+  #POE::Kernel->run();
   #warn "Stopping kernel\n";
 
   #exit 0;
@@ -93,7 +93,8 @@ First event to be called after kernel starts
 # Session has started.
 #
 sub _start {
-  my ( $self, $kernel ) = @_[ OBJECT, KERNEL ];
+  #my ( $self, $kernel ) = @_[ OBJECT, KERNEL ];
+  my ( $self, $kernel ) = @_;
 
   #warn "Kernel has started\n"; # XXX: debug
   # XXX: While we debug only run for 30 secs
@@ -144,7 +145,8 @@ Stop kernel from running
 # Shutdown session.
 #
 sub _stop {
-  my ($self) = $_[OBJECT];
+  #my ($self) = $_[OBJECT];
+  my ($self) = @_;
 
   # XXX: Why are we told to stop
   #default(@_);
@@ -165,7 +167,7 @@ sub postevent {
   my ( $self, $event ) = @_;
 
   warn "Posting event: $event\n"; # XXX: debug
-  POE::Kernel->yield($event);
+  #POE::Kernel->yield($event);
 }
 
 =head2 default
@@ -179,16 +181,16 @@ Events with no handler are trapped here.
 #
 sub default {
   warn " ABFS Unhandled Event:\n";
-  warn " OBJECT: $_[OBJECT]\n";
-  warn " SESSION: $_[SESSION]\n";
-  warn " SENDER: $_[SENDER]\n";
-  warn " STATE: $_[STATE]\n";
-  warn " KERNEL: $_[KERNEL]\n";
-  warn " HEAP: $_[HEAP]\n";
-  warn " CALLER_FILE: $_[CALLER_FILE]\n";
-  warn " CALLER_LINE: $_[CALLER_LINE]\n";
-  warn " CALLER_STATE: $_[CALLER_STATE]\n";
-  warn " ACTIVE EVENT: " . $_[KERNEL]->get_active_event() . "\n";
+  #warn " OBJECT: $_[OBJECT]\n";
+  #warn " SESSION: $_[SESSION]\n";
+  #warn " SENDER: $_[SENDER]\n";
+  #warn " STATE: $_[STATE]\n";
+  #warn " KERNEL: $_[KERNEL]\n";
+  #warn " HEAP: $_[HEAP]\n";
+  #warn " CALLER_FILE: $_[CALLER_FILE]\n";
+  #warn " CALLER_LINE: $_[CALLER_LINE]\n";
+  #warn " CALLER_STATE: $_[CALLER_STATE]\n";
+  #warn " ACTIVE EVENT: " . $_[KERNEL]->get_active_event() . "\n";
 }
 
 =head2 stop
@@ -220,7 +222,8 @@ sub add {
     use Data::Dumper; # XXX: debug
     #my $return = POE::Kernel->state();
     #warn Dumper $return;
-    my $return = POE::Kernel->state( $e, $code );
+    #my $return = POE::Kernel->state( $e, $code );
+    my $return = 'OK';
     warn Dumper $return;
   }
 }
@@ -237,7 +240,7 @@ sub del {
   my ( $self, $obj, $events ) = @_;
 
   for my $e (@$events) {
-    POE::Kernel->state($e);
+    #POE::Kernel->state($e);
   }
 }
 

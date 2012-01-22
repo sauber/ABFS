@@ -24,4 +24,4 @@ isa_ok( $console, 'ABFS::Common::Requestable' );
 can_ok( $console, qw(spawn consoleinput response exit) );
 
 ok( $console->response( { message=>'hello world'} ), 'consoleresponse');
-POE::Kernel->run();
+#POE::Kernel->run();

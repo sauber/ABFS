@@ -31,4 +31,4 @@ for my $modulename ( all_modules() ) {
   }
 }
 # Close sessions
-POE::Kernel->run();
+#POE::Kernel->run();

@@ -1,6 +1,6 @@
 package ABFS::Device::Heap;
 use base ('ABFS::Device::Plugin');
-use POE;
+#use POE;
 
 =head1 NAME
 
@@ -161,20 +161,20 @@ sub resize {
   return $self->usage;
 }
 
-# Create a POE::Session to delete one by one to not block for too long time
+# Create a Session to delete one by one to not block for too long time
 #
 sub _resize_session {
   my($self,$blocklist,$newsize) = @_;
 
-  POE::Session->create(
-    object_states => [
-      $self => {
-        _start => '_resize_session_start',
-        next => '_resize_session_next',
-      },
-    ],
-    args => [ $blocklist, $newsize ],
-  );
+  #POE::Session->create(
+  #  object_states => [
+  #    $self => {
+  #      _start => '_resize_session_start',
+  #      next => '_resize_session_next',
+  #    },
+  #  ],
+  #  args => [ $blocklist, $newsize ],
+  #);
 }
 
 sub _resize_session_start {

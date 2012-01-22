@@ -11,7 +11,7 @@ WriteMakefile(
   PREREQ_PM     => {
     'Test::More'          => 0,
     'Carp'                => 0,
-    'POE'                 => 0,
+    'AnyEvent'            => 0,
     'Module::Load'        => 0,
     'List::Util'          => 0,
     'Digest::SHA'         => 0,

@@ -186,7 +186,7 @@ sub makeresponse {
   $provider->submitmessage( @requests );
 
 Puts one or more requests/responses into request queue. Wheels handlers
-are called directly by POE kernel, so no chance for Request to
+are called directly by kernel, so no chance for Request to
 intercept and pick up returned messages. Instead wheel handlers have to
 add to Request queue directly themselves.
 

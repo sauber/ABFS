@@ -28,7 +28,7 @@ our $VERSION = do { my @r = ( q$Revision: 9 $ =~ /\d+/g ); sprintf "%d." . "%02d
 
 Bare module for ABFS loadable modules. Each loadable module must have
 a properties sub that defines default values for config options, 
-commands that Command module can execute, POE kernel handlers, dependency
+commands that Command module can execute, kernel handlers, dependency
 requirements for other modules and possibly category of requests that it
 can handle.
 

@@ -50,4 +50,4 @@ ok( 3 == $req->{queue}->queuesize(), '3enqueued' );
 ok( $req->selectmodule( $req->{queue}->next() ) == PERMFAILURE, 'selectmodule' );
 #ok( $req->call( $req->{queue}->next() ) == PERMFAILURE, 'callrequest' );
 #ok( ! $req->answer( $req->{queue}->next() ), 'answerrequest' );
-POE::Kernel->run();
+#POE::Kernel->run();

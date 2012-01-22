@@ -2,8 +2,8 @@ package ABFS::Core::Console;
 
 use strict;
 use warnings;
-use POE;
-use POE::Wheel::ReadLine;
+#use POE;
+#use POE::Wheel::ReadLine;
 use Carp;
 use base ('ABFS::Common::Requestable');
 
@@ -73,30 +73,31 @@ sub spawn {
   #    got_user_input => \&handle_user_input,
   #  }
   #);
-  POE::Session->create(
-    object_states=> [
-      $self => { _start => 'setup_console' },
-      $self => { got_user_input => 'handle_user_input' },
-    ]
-  );
+  #POE::Session->create(
+  #  object_states=> [
+  #    $self => { _start => 'setup_console' },
+  #    $self => { got_user_input => 'handle_user_input' },
+  #  ]
+  #);
 }
 
 =head2 handle_user_input
 
-  $console->handle_user_input(@POEARGS);
+  $console->handle_user_input(@ARGS);
 
 Turn input from console into an ABFS request
 
 =cut
 
 sub handle_user_input {
-  my ($self, $input, $exception) = @_[OBJECT, ARG0, ARG1];
+  #my ($self, $input, $exception) = @_[OBJECT, ARG0, ARG1];
+  my ($self, $input, $exception) = @_;
   #my $console = $_[HEAP]{console};
   my $console = $self->{wheel};
 
   unless (defined $input) {
     $console->put("$exception caught.  B’bye!");
-    $_[KERNEL]->signal($_[KERNEL], "UIDESTROY");
+    #$_[KERNEL]->signal($_[KERNEL], "UIDESTROY");
     $console->write_history("./test_history");
     return;
   }
@@ -121,23 +122,24 @@ sub handle_user_input {
 
   $console->setup_console();
 
-Creates a POE wheel to deal console events
+Creates a wheel to deal console events
 
 =cut
 
 sub setup_console {
-  my $self = $_[OBJECT];
+  #my $self = $_[OBJECT];
+  my $self = shift;
 
-  $self->{wheel} ||= POE::Wheel::ReadLine->new(
-    InputEvent => 'got_user_input'
-  );
-  $self->{wheel}->read_history("./test_history");
-  $self->{wheel}->clear();
-  $self->{wheel}->put(
-    "Enter some text.",
-    "Ctrl+C or Ctrl+D exits."
-  );
-  $self->{wheel}->get($self->{config}{Config}{prompt});
+  #$self->{wheel} ||= POE::Wheel::ReadLine->new(
+  #  InputEvent => 'got_user_input'
+  #);
+  #$self->{wheel}->read_history("./test_history");
+  #$self->{wheel}->clear();
+  #$self->{wheel}->put(
+  #  "Enter some text.",
+  #  "Ctrl+C or Ctrl+D exits."
+  #);
+  #$self->{wheel}->get($self->{config}{Config}{prompt});
 }
 
 
@@ -150,13 +152,13 @@ sub _old_spawn {
   }
 
   # Launch a console
-  $self->{wheel} = POE::Wheel::ReadLine->new(
-    #InputEvent => 'consoleinput',
-    InputEvent => \&consoleinput($self),
-  );
+  #$self->{wheel} = POE::Wheel::ReadLine->new(
+  #  #InputEvent => 'consoleinput',
+  #  InputEvent => \&consoleinput($self),
+  #);
 
   # Write out a prompt
-  $self->{wheel}->get($self->{config}{Config}{prompt});
+  #$self->{wheel}->get($self->{config}{Config}{prompt});
 }
 
 =head2 consoleinput
@@ -166,7 +168,8 @@ Handles input type by user on console
 =cut
 
 sub consoleinput {
-  my ( $self, $input, $exception ) = @_[ OBJECT, ARG0, ARG1 ];
+  #my ( $self, $input, $exception ) = @_[ OBJECT, ARG0, ARG1 ];
+  my ( $self, $input, $exception ) = @_;
 
   warn "$self Got console input: $input / $exception\n";
   # XXX: These causes error in test case.

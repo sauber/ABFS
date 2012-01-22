@@ -40,4 +40,4 @@ ok( !$loader->getobj('bogus'), 'loadedbogusinit' );
 #diag "unloadok: " . Dumper $unloadok;
 #ok( !$unloadok, 'unloadedbogusfailure' );
 ok( !$loader->getobj('bogus'), 'unloadedbogusinit' );
-POE::Kernel->run();
+#POE::Kernel->run();

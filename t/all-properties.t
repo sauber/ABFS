@@ -85,4 +85,4 @@ for my $modulename ( @modulelist ) {
   #}
 
 }
-POE::Kernel->run();
+#POE::Kernel->run();

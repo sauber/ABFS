@@ -61,7 +61,7 @@ sub console_mode {
   #my $abfs_console = new ABFS::Console;
   my $abfs_kernel = $self->bootstrap();
   #$abfs_kernel->{loader}->add('Command::Console');
-  # Let Request module load in Console after POE kernel is started
+  # Let Request module load in Console after kernel is started
   $abfs_kernel->{loader}{modules}->getobj('Request')->cmd('load Command::Console');
 
   $abfs_kernel->run();

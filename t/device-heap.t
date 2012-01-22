@@ -51,8 +51,8 @@ ok( 1 == $device->write(2,'b'), 'write2' );
 ok( 1 == $device->write(3,'c'), 'write3' );
 
 $device->resize(5);
-POE::Kernel->run();
+#POE::Kernel->run();
 ok( 4 == $device->usage, 'resize5' );
 $device->resize(1);
-POE::Kernel->run();
+#POE::Kernel->run();
 ok( 0 == $device->usage, 'resize1' );

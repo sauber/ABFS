@@ -40,4 +40,4 @@ ok( scalar @loaded == scalar @loaded,
   "Same number of modules loaded and unloaded" );
 
 # Clean up sessions
-POE::Kernel->run();
+#POE::Kernel->run();

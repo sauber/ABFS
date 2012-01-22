@@ -5,7 +5,7 @@ use strict;
 use Carp;
 use ABFS::Core::Queue;
 use ABFS::Core::Constants;
-use POE;
+#use POE;
 use base ('ABFS::Common::Loadable');
 
 =head1 NAME
@@ -56,15 +56,16 @@ sub _postinitialize {
   # XXX: Get a scheduler to determine order of processing
   #$self->{scheduler} = ABFS::Core::Queue;
 
-  $self->{sessionID} = POE::Session->create(
-    object_states => [
-      #$self => { _start      => sub { $_[KERNEL]->yield("requestnext") } },
-      $self => { requestnext => 'requestnext' },
-    ],
-    inline_states => {
-      _start      => sub { $_[KERNEL]->yield("requestnext") },
-    }
-  )->ID();
+  #$self->{sessionID} = POE::Session->create(
+  #  object_states => [
+  #    #$self => { _start      => sub { $_[KERNEL]->yield("requestnext") } },
+  #    $self => { requestnext => 'requestnext' },
+  #  ],
+  #  inline_states => {
+  #    _start      => sub { $_[KERNEL]->yield("requestnext") },
+  #  }
+  #)->ID();
+  $self->{sessionID} = int rand 16 ** 2;
 }
 
 # Get kernel object from modules list
@@ -77,14 +78,15 @@ sub _kernel {
 
 =head2 requestnext
 
-  @response = $rq->requestnext(@POEARGS);
+  @response = $rq->requestnext(@ARGS);
 
 Execute a command. A number of requests or responses might be the result.
 
 =cut
 
 sub requestnext {
-  my ($self,$kernel) = @_[OBJECT, KERNEL];
+  #my ($self,$kernel) = @_[OBJECT, KERNEL];
+  my ($self,$kernel) = @_;
 
   # XXX: TODO
   #warn "Reached requestnext\n"; # XXX: debug
@@ -451,7 +453,7 @@ sub enqueue {
     #$self->{kernel}->postevent('requestnext');
     my $qsize = $self->{queue}->queuesize();
     #warn "$self, yield, queuesize $qsize\n"; # XXX: debug
-    POE::Kernel->post($self->{sessionID}, 'requestnext');
+    #POE::Kernel->post($self->{sessionID}, 'requestnext');
   }
 }
 
